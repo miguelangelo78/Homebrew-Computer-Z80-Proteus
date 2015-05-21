@@ -1,0 +1,370 @@
+
+ATmega32_Z80_ProgLoader.elf:     file format elf32-avr
+
+Sections:
+Idx Name          Size      VMA       LMA       File off  Algn
+  0 .text         000001a6  00000000  00000000  00000074  2**1
+                  CONTENTS, ALLOC, LOAD, READONLY, CODE
+  1 .bss          000000ff  00800060  00800060  0000021a  2**0
+                  ALLOC
+  2 .comment      00000030  00000000  00000000  0000021a  2**0
+                  CONTENTS, READONLY
+  3 .debug_aranges 00000038  00000000  00000000  0000024a  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  4 .debug_info   000003fe  00000000  00000000  00000282  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  5 .debug_abbrev 00000247  00000000  00000000  00000680  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  6 .debug_line   00000150  00000000  00000000  000008c7  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  7 .debug_frame  00000054  00000000  00000000  00000a18  2**2
+                  CONTENTS, READONLY, DEBUGGING
+  8 .debug_str    0000030d  00000000  00000000  00000a6c  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  9 .debug_loc    000000f9  00000000  00000000  00000d79  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 10 .debug_ranges 00000058  00000000  00000000  00000e72  2**0
+                  CONTENTS, READONLY, DEBUGGING
+
+Disassembly of section .text:
+
+00000000 <__vectors>:
+   0:	0c 94 2b 00 	jmp	0x56	; 0x56 <__ctors_end>
+   4:	0c 94 48 00 	jmp	0x90	; 0x90 <__bad_interrupt>
+   8:	0c 94 48 00 	jmp	0x90	; 0x90 <__bad_interrupt>
+   c:	0c 94 48 00 	jmp	0x90	; 0x90 <__bad_interrupt>
+  10:	0c 94 48 00 	jmp	0x90	; 0x90 <__bad_interrupt>
+  14:	0c 94 48 00 	jmp	0x90	; 0x90 <__bad_interrupt>
+  18:	0c 94 48 00 	jmp	0x90	; 0x90 <__bad_interrupt>
+  1c:	0c 94 48 00 	jmp	0x90	; 0x90 <__bad_interrupt>
+  20:	0c 94 48 00 	jmp	0x90	; 0x90 <__bad_interrupt>
+  24:	0c 94 48 00 	jmp	0x90	; 0x90 <__bad_interrupt>
+  28:	0c 94 48 00 	jmp	0x90	; 0x90 <__bad_interrupt>
+  2c:	0c 94 48 00 	jmp	0x90	; 0x90 <__bad_interrupt>
+  30:	0c 94 48 00 	jmp	0x90	; 0x90 <__bad_interrupt>
+  34:	0c 94 48 00 	jmp	0x90	; 0x90 <__bad_interrupt>
+  38:	0c 94 48 00 	jmp	0x90	; 0x90 <__bad_interrupt>
+  3c:	0c 94 48 00 	jmp	0x90	; 0x90 <__bad_interrupt>
+  40:	0c 94 48 00 	jmp	0x90	; 0x90 <__bad_interrupt>
+  44:	0c 94 48 00 	jmp	0x90	; 0x90 <__bad_interrupt>
+  48:	0c 94 48 00 	jmp	0x90	; 0x90 <__bad_interrupt>
+  4c:	0c 94 48 00 	jmp	0x90	; 0x90 <__bad_interrupt>
+  50:	0c 94 48 00 	jmp	0x90	; 0x90 <__bad_interrupt>
+
+00000054 <__ctors_start>:
+  54:	c3 00       	.word	0x00c3	; ????
+
+00000056 <__ctors_end>:
+  56:	11 24       	eor	r1, r1
+  58:	1f be       	out	0x3f, r1	; 63
+  5a:	cf e5       	ldi	r28, 0x5F	; 95
+  5c:	d8 e0       	ldi	r29, 0x08	; 8
+  5e:	de bf       	out	0x3e, r29	; 62
+  60:	cd bf       	out	0x3d, r28	; 61
+
+00000062 <__do_clear_bss>:
+  62:	21 e0       	ldi	r18, 0x01	; 1
+  64:	a0 e6       	ldi	r26, 0x60	; 96
+  66:	b0 e0       	ldi	r27, 0x00	; 0
+  68:	01 c0       	rjmp	.+2      	; 0x6c <.do_clear_bss_start>
+
+0000006a <.do_clear_bss_loop>:
+  6a:	1d 92       	st	X+, r1
+
+0000006c <.do_clear_bss_start>:
+  6c:	af 35       	cpi	r26, 0x5F	; 95
+  6e:	b2 07       	cpc	r27, r18
+  70:	e1 f7       	brne	.-8      	; 0x6a <.do_clear_bss_loop>
+
+00000072 <__do_global_ctors>:
+  72:	10 e0       	ldi	r17, 0x00	; 0
+  74:	c6 e5       	ldi	r28, 0x56	; 86
+  76:	d0 e0       	ldi	r29, 0x00	; 0
+  78:	04 c0       	rjmp	.+8      	; 0x82 <__do_global_ctors+0x10>
+  7a:	22 97       	sbiw	r28, 0x02	; 2
+  7c:	fe 01       	movw	r30, r28
+  7e:	0e 94 cd 00 	call	0x19a	; 0x19a <__tablejump__>
+  82:	c4 35       	cpi	r28, 0x54	; 84
+  84:	d1 07       	cpc	r29, r17
+  86:	c9 f7       	brne	.-14     	; 0x7a <__do_global_ctors+0x8>
+  88:	0e 94 57 00 	call	0xae	; 0xae <main>
+  8c:	0c 94 d1 00 	jmp	0x1a2	; 0x1a2 <_exit>
+
+00000090 <__bad_interrupt>:
+  90:	0c 94 00 00 	jmp	0	; 0x0 <__vectors>
+
+00000094 <_Z4initv>:
+#define RD_LOW() bit_clear(CONTROL_P,N_RD);
+
+#define SRAM_SIZE pow(2,16)-1;
+
+void init(){
+	bit_set(CONTROL_PD,N_RESET); // Set reset as output
+  94:	b8 9a       	sbi	0x17, 0	; 23
+	bit_set(CONTROL_PD,N_WR); // Set write as output
+  96:	b9 9a       	sbi	0x17, 1	; 23
+	bit_set(CONTROL_PD,N_RD); // Set read as output
+  98:	ba 9a       	sbi	0x17, 2	; 23
+	
+	// Set reset low:
+	RESET_LOW()
+  9a:	c0 98       	cbi	0x18, 0	; 24
+	// Set write high:
+	WR_HIGH()
+  9c:	c1 9a       	sbi	0x18, 1	; 24
+	// Set read high:
+	RD_HIGH()
+  9e:	c2 9a       	sbi	0x18, 2	; 24
+  a0:	08 95       	ret
+
+000000a2 <_Z10write_SRAMjh>:
+
+void write_SRAM(uint16_t address,uint8_t data){
+	// TODO: Write 'data' into address 'address':
+	
+	// Put address data out:
+	ADDRESS_LOW = address & 0x00FF;
+  a2:	85 bb       	out	0x15, r24	; 21
+	ADDRESS_HIGH = (address & 0xFF00)>>8;
+  a4:	92 bb       	out	0x12, r25	; 18
+	
+	DATA_BUS = data;
+  a6:	6b bb       	out	0x1b, r22	; 27
+	
+	WR_LOW();
+  a8:	c1 98       	cbi	0x18, 1	; 24
+	//_delay_ms(1);
+	WR_HIGH();
+  aa:	c1 9a       	sbi	0x18, 1	; 24
+  ac:	08 95       	ret
+
+000000ae <main>:
+}
+
+int main(void) {
+	init(); // Initialize inputs
+  ae:	0e 94 4a 00 	call	0x94	; 0x94 <_Z4initv>
+	
+	// Set data and address buses as output:
+	DDRA = DDRC = DDRD = 0xFF;
+  b2:	8f ef       	ldi	r24, 0xFF	; 255
+  b4:	81 bb       	out	0x11, r24	; 17
+  b6:	84 bb       	out	0x14, r24	; 20
+  b8:	8a bb       	out	0x1a, r24	; 26
+  ba:	81 2c       	mov	r8, r1
+  bc:	91 2c       	mov	r9, r1
+  be:	54 01       	movw	r10, r8
+
+	uint16_t sram_current_address = 0;
+  c0:	e1 2c       	mov	r14, r1
+  c2:	f1 2c       	mov	r15, r1
+		SPSR = 0x00;
+	}
+	
+	void spi_write(uint8_t data) {
+		FLASH_CS_LOW();
+		SPDR = data;
+  c4:	0f 2e       	mov	r0, r31
+  c6:	f6 e0       	ldi	r31, 0x06	; 6
+  c8:	2f 2e       	mov	r2, r31
+  ca:	f0 2d       	mov	r31, r0
+  cc:	0f 2e       	mov	r0, r31
+  ce:	f0 e6       	ldi	r31, 0x60	; 96
+  d0:	cf 2e       	mov	r12, r31
+  d2:	f0 e0       	ldi	r31, 0x00	; 0
+  d4:	df 2e       	mov	r13, r31
+  d6:	f0 2d       	mov	r31, r0
+  d8:	cf e5       	ldi	r28, 0x5F	; 95
+  da:	d1 e0       	ldi	r29, 0x01	; 1
+		SPDR = (uint8_t) page_address;			WAIT_TRANSFER();
+		SPDR = (uint8_t) (page_address>8);		WAIT_TRANSFER();
+		SPDR = (uint8_t) (page_address>>16);	WAIT_TRANSFER();
+		
+		for(int i=0;i<length;i++){
+			SPDR = 0xF0; WAIT_TRANSFER();
+  dc:	0f 2e       	mov	r0, r31
+  de:	f0 ef       	ldi	r31, 0xF0	; 240
+  e0:	3f 2e       	mov	r3, r31
+  e2:	f0 2d       	mov	r31, r0
+  e4:	36 01       	movw	r6, r12
+  e6:	60 94       	com	r6
+  e8:	70 94       	com	r7
+		SPCR |= (1<<SPE) | (1<<MSTR) | (1<<SPR0);
+		SPSR = 0x00;
+	}
+	
+	void spi_write(uint8_t data) {
+		FLASH_CS_LOW();
+  ea:	c4 98       	cbi	0x18, 4	; 24
+		SPDR = data;
+  ec:	2f b8       	out	0x0f, r2	; 15
+		WAIT_TRANSFER();
+  ee:	77 9b       	sbis	0x0e, 7	; 14
+  f0:	fe cf       	rjmp	.-4      	; 0xee <main+0x40>
+		FLASH_CS_HIGH();
+  f2:	c4 9a       	sbi	0x18, 4	; 24
+
+	void spi_page_read(uint32_t page_address,uint8_t * buffer,uint8_t length){
+		spi_write(WREN);
+		//_delay_ms(10);
+		
+		FLASH_CS_LOW();
+  f4:	c4 98       	cbi	0x18, 4	; 24
+		
+		SPDR = READ; WAIT_TRANSFER();
+  f6:	83 e0       	ldi	r24, 0x03	; 3
+  f8:	8f b9       	out	0x0f, r24	; 15
+  fa:	77 9b       	sbis	0x0e, 7	; 14
+  fc:	fe cf       	rjmp	.-4      	; 0xfa <main+0x4c>
+		
+		SPDR = (uint8_t) page_address;			WAIT_TRANSFER();
+  fe:	8f b8       	out	0x0f, r8	; 15
+ 100:	77 9b       	sbis	0x0e, 7	; 14
+ 102:	fe cf       	rjmp	.-4      	; 0x100 <main+0x52>
+		SPDR = (uint8_t) (page_address>8);		WAIT_TRANSFER();
+ 104:	81 e0       	ldi	r24, 0x01	; 1
+ 106:	99 e0       	ldi	r25, 0x09	; 9
+ 108:	89 16       	cp	r8, r25
+ 10a:	91 04       	cpc	r9, r1
+ 10c:	a1 04       	cpc	r10, r1
+ 10e:	b1 04       	cpc	r11, r1
+ 110:	08 f4       	brcc	.+2      	; 0x114 <main+0x66>
+ 112:	80 e0       	ldi	r24, 0x00	; 0
+ 114:	8f b9       	out	0x0f, r24	; 15
+ 116:	77 9b       	sbis	0x0e, 7	; 14
+ 118:	fe cf       	rjmp	.-4      	; 0x116 <main+0x68>
+		SPDR = (uint8_t) (page_address>>16);	WAIT_TRANSFER();
+ 11a:	c5 01       	movw	r24, r10
+ 11c:	aa 27       	eor	r26, r26
+ 11e:	bb 27       	eor	r27, r27
+ 120:	8f b9       	out	0x0f, r24	; 15
+ 122:	77 9b       	sbis	0x0e, 7	; 14
+ 124:	fe cf       	rjmp	.-4      	; 0x122 <main+0x74>
+ 126:	f6 01       	movw	r30, r12
+		
+		for(int i=0;i<length;i++){
+			SPDR = 0xF0; WAIT_TRANSFER();
+ 128:	3f b8       	out	0x0f, r3	; 15
+ 12a:	77 9b       	sbis	0x0e, 7	; 14
+ 12c:	fe cf       	rjmp	.-4      	; 0x12a <main+0x7c>
+			buffer[i] = SPDR;
+ 12e:	8f b1       	in	r24, 0x0f	; 15
+ 130:	81 93       	st	Z+, r24
+		
+		SPDR = (uint8_t) page_address;			WAIT_TRANSFER();
+		SPDR = (uint8_t) (page_address>8);		WAIT_TRANSFER();
+		SPDR = (uint8_t) (page_address>>16);	WAIT_TRANSFER();
+		
+		for(int i=0;i<length;i++){
+ 132:	ec 17       	cp	r30, r28
+ 134:	fd 07       	cpc	r31, r29
+ 136:	c1 f7       	brne	.-16     	; 0x128 <main+0x7a>
+			SPDR = 0xF0; WAIT_TRANSFER();
+			buffer[i] = SPDR;
+		}
+		
+		FLASH_CS_HIGH();
+ 138:	c4 9a       	sbi	0x18, 4	; 24
+ 13a:	26 01       	movw	r4, r12
+ 13c:	87 01       	movw	r16, r14
+ 13e:	06 0d       	add	r16, r6
+ 140:	17 1d       	adc	r17, r7
+		// Read current sector:
+		spi.spi_page_read(sector,page_buffer,PAGE_SIZE); 
+		// And write into into SRAM:
+		
+		for(uint16_t i=0;i<PAGE_SIZE;i++)
+			write_SRAM(i+sram_current_address,page_buffer[i]);
+ 142:	f2 01       	movw	r30, r4
+ 144:	61 91       	ld	r22, Z+
+ 146:	2f 01       	movw	r4, r30
+ 148:	c8 01       	movw	r24, r16
+ 14a:	8e 0f       	add	r24, r30
+ 14c:	9f 1f       	adc	r25, r31
+ 14e:	0e 94 51 00 	call	0xa2	; 0xa2 <_Z10write_SRAMjh>
+	for(int sector=0;sector<NUM_OF_SECTORS;sector++){
+		// Read current sector:
+		spi.spi_page_read(sector,page_buffer,PAGE_SIZE); 
+		// And write into into SRAM:
+		
+		for(uint16_t i=0;i<PAGE_SIZE;i++)
+ 152:	4c 16       	cp	r4, r28
+ 154:	5d 06       	cpc	r5, r29
+ 156:	a9 f7       	brne	.-22     	; 0x142 <main+0x94>
+			write_SRAM(i+sram_current_address,page_buffer[i]);
+		
+		sram_current_address+=PAGE_SIZE;
+ 158:	ff ef       	ldi	r31, 0xFF	; 255
+ 15a:	ef 0e       	add	r14, r31
+ 15c:	f1 1c       	adc	r15, r1
+ 15e:	8f ef       	ldi	r24, 0xFF	; 255
+ 160:	88 1a       	sub	r8, r24
+ 162:	98 0a       	sbc	r9, r24
+ 164:	a8 0a       	sbc	r10, r24
+ 166:	b8 0a       	sbc	r11, r24
+	// Set data and address buses as output:
+	DDRA = DDRC = DDRD = 0xFF;
+
+	uint16_t sram_current_address = 0;
+	
+	for(int sector=0;sector<NUM_OF_SECTORS;sector++){
+ 168:	9f ef       	ldi	r25, 0xFF	; 255
+ 16a:	e9 16       	cp	r14, r25
+ 16c:	f9 06       	cpc	r15, r25
+ 16e:	09 f0       	breq	.+2      	; 0x172 <main+0xc4>
+ 170:	bc cf       	rjmp	.-136    	; 0xea <main+0x3c>
+		
+		sram_current_address+=PAGE_SIZE;
+	}
+	
+	// SRAM is full with the program. Allow Z80 to execute it:
+	PORTA = PORTC = PORTD = 0x0;
+ 172:	12 ba       	out	0x12, r1	; 18
+ 174:	15 ba       	out	0x15, r1	; 21
+ 176:	1b ba       	out	0x1b, r1	; 27
+	DDRA  = DDRC  = DDRD  = 0x0;
+ 178:	11 ba       	out	0x11, r1	; 17
+ 17a:	14 ba       	out	0x14, r1	; 20
+ 17c:	1a ba       	out	0x1a, r1	; 26
+	
+	WR_LOW()
+ 17e:	c1 98       	cbi	0x18, 1	; 24
+	RD_LOW()
+ 180:	c2 98       	cbi	0x18, 2	; 24
+	RESET_HIGH() // Start Z80 CPU!
+ 182:	c0 9a       	sbi	0x18, 0	; 24
+ 184:	ff cf       	rjmp	.-2      	; 0x184 <main+0xd6>
+
+00000186 <_GLOBAL__sub_I_spi>:
+	
+	public:
+	SPI_M45PE16(){ spi_init(); }
+	
+	void spi_init(){
+		DDRB |= (1<<4) | (1<<5) | (1<<7);
+ 186:	87 b3       	in	r24, 0x17	; 23
+ 188:	80 6b       	ori	r24, 0xB0	; 176
+ 18a:	87 bb       	out	0x17, r24	; 23
+		SPCR |= (1<<SPE) | (1<<MSTR) | (1<<SPR0);
+ 18c:	8d b1       	in	r24, 0x0d	; 13
+ 18e:	81 65       	ori	r24, 0x51	; 81
+ 190:	8d b9       	out	0x0d, r24	; 13
+		SPSR = 0x00;
+ 192:	1e b8       	out	0x0e, r1	; 14
+ 194:	08 95       	ret
+
+00000196 <__tablejump2__>:
+ 196:	ee 0f       	add	r30, r30
+ 198:	ff 1f       	adc	r31, r31
+
+0000019a <__tablejump__>:
+ 19a:	05 90       	lpm	r0, Z+
+ 19c:	f4 91       	lpm	r31, Z
+ 19e:	e0 2d       	mov	r30, r0
+ 1a0:	09 94       	ijmp
+
+000001a2 <_exit>:
+ 1a2:	f8 94       	cli
+
+000001a4 <__stop_program>:
+ 1a4:	ff cf       	rjmp	.-2      	; 0x1a4 <__stop_program>
