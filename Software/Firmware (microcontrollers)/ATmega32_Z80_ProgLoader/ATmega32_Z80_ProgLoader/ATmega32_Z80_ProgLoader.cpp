@@ -77,8 +77,8 @@ int main(void) {
 	PORTA = PORTC = PORTD = 0x0;
 	DDRA  = DDRC  = DDRD  = 0x0;
 	
-	WR_LOW()
-	RD_LOW()
+	WR_HIGH()
+	RD_HIGH()
 	RESET_HIGH() // Start Z80 CPU!
 	
 	while(1){

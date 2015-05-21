@@ -430,10 +430,10 @@ END GROUP
  *(.debug_frame)
  .debug_frame   0x00000000       0x54 ATmega32_Z80_ProgLoader.o
 
-.debug_str      0x00000000      0x30d
+.debug_str      0x00000000      0x352
  *(.debug_str)
- .debug_str     0x00000000      0x30d ATmega32_Z80_ProgLoader.o
-                                0x355 (size before relaxing)
+ .debug_str     0x00000000      0x352 ATmega32_Z80_ProgLoader.o
+                                0x39a (size before relaxing)
 
 .debug_loc      0x00000000       0xf9
  *(.debug_loc)
